@@ -2,15 +2,46 @@
   <div class="container">
     <h1>this is vue home page</h1>
     <button type="button" @click="goTo('/list')">go to list page</button>
+    <input v-model="username" />
+    <button @click="setUserName()">设置用户名</button>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { getCurrentInstance, ref } from "vue";
 import { useRouter } from "vue-router";
-const $router = useRouter();
+import { useStore } from "vuex";
 
-const goTo = (url) => {
-  $router.push({ path: url });
+export default {
+  setup() {
+    const $router = useRouter();
+    const $store = useStore();
+    const username = ref("");
+    const { proxy } = getCurrentInstance()!;
+
+    const changeGlobalState = (name:string) => {
+      if ((proxy as any).$setGlobalState) {
+        console.log("此处可设置全局state");
+        proxy.$setGlobalState({userInfo: {username: name}})
+      }
+    };
+
+    const goTo = (url: string) => {
+      $router.push({ path: url });
+    };
+
+    const setUserName = () => {
+      $store.dispatch("setUserInfo", {
+        username: username.value,
+      });
+      changeGlobalState(username.value);
+    };
+    return {
+      setUserName,
+      goTo,
+      username,
+    };
+  },
 };
 </script>
 
