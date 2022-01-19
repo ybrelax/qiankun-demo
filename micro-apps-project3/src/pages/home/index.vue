@@ -21,8 +21,7 @@ export default {
 
     const changeGlobalState = (name:string) => {
       if ((proxy as any).$setGlobalState) {
-        console.log("此处可设置全局state");
-        proxy.$setGlobalState({userInfo: {username: name}})
+        (proxy as any).$setGlobalState({userInfo: {username: name}})
       }
     };
 

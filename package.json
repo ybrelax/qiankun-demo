@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npm-run-all --parallel start:*",
     "start:main": "cd main-project && yarn start",
+    "start:sub-project1": "cd micro-apps-project1 && yarn start",
     "start:sub-project3": "cd micro-apps-project3 && yarn start",
     "build": "npm-run-all build:* && bash ./scripts/bundle.sh",
     "build:main": "cd main-project && yarn build",

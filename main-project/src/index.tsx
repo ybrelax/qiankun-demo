@@ -10,12 +10,12 @@ import store from "./store/store";
 
 registerMicroApps(
   [
-    // {
-    //   name: "react app", // app name registered
-    //   entry: "//localhost:8001",
-    //   container: "#yourContainer",
-    //   activeRule: "/yourActiveRule",
-    // },
+    {
+      name: "micro-apps-project1", // app name registered
+      entry: process.env.REACT_APP_ENTRY_PROJECT1 as string,
+      container: "#app",
+      activeRule: "/project1",
+    },
     {
       name: "micro-apps-project3",
       entry: process.env.REACT_APP_ENTRY_PROJECT3 as string,

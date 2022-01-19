@@ -20,13 +20,11 @@ const render = (
     instance.config.globalProperties.$onGlobalStateChange =
       props.onGlobalStateChange;
     instance.config.globalProperties.$setGlobalState = props.setGlobalState;
-    console.log('全局熟悉：', instance.config.globalProperties.$onGlobalStateChange)
   }
   instance.mount(container ? container.querySelector("#app") : "#app");
 };
 
 if (!(window as any).__POWERED_BY_QIANKUN__) {
-  console.log("这里");
   render();
 }
 
@@ -35,11 +33,11 @@ export async function bootstrap() {
 }
 
 export async function mount(props: any) {
+  console.log('vue app mount')
   render(props);
 }
 
 export async function unmount() {
-  console.log("app unmount");
+  console.log("vue app unmount");
 }
 
-console.log("运行完成");
